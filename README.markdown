@@ -1,4 +1,4 @@
-# Simple setup for hot reloading typescript webpack dev server.
+# Simple setup for TypeScript: ts-loader + webpack2 + react-hot-loader3
 
 ```
 yarn install
