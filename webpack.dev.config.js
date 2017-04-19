@@ -29,6 +29,26 @@ var config = {
     module: {
         loaders: [
             { test: /\.tsx?$/, loaders: ['ts-loader'], include: appDir },
+            { test: /\.css$/, exclude: /\.import\.css$/, loader: "style-loader!css", include: appDir },
+            { test: /\.scss$/, exclude: /\.module\.scss$/, loader: "style-loader!css-loader!sass-loader", include: appDir },
+            { test: /\.module\.scss$/, loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader", include: appDir },
+            { test: /\.svg$/, loader: 'svg-inline-loader' },
+            {
+                test: /\.(woff|woff2)$/,
+                loader: 'url-loader',
+                options: {
+                    name: 'fonts/[hash].[ext]',
+                    limit: 5000,
+                    mimetype: 'application/font-woff',
+                },
+            },{
+                test: /\.(ttf|eot)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[hash].[ext]',
+                },
+            },
+            { test: /\.(jpg|png|gif)$/, loader: "file-loader?name=[name].[ext]", include: appDir }
         ]
     },
     devtool: 'inline-source-map',
